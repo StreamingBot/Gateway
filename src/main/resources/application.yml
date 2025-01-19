@@ -1,0 +1,26 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,prometheus
+  metrics:
+    tags:
+      application: ${spring.application.name}
+    enable:
+      all: true 
+
+# Keycloak configuratie
+keycloak:
+  auth-server-url: ${KEYCLOAK_URL}/realms/${KEYCLOAK_REALM}
+  realm: ${KEYCLOAK_REALM}
+  resource: ${KEYCLOAK_CLIENT_ID}
+  bearer-only: true
+
+# Spring security oauth2 resource server configuratie
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_URL}/realms/${KEYCLOAK_REALM}
+
