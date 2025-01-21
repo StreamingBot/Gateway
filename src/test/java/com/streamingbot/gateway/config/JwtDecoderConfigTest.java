@@ -3,16 +3,12 @@ package com.streamingbot.gateway.config;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.test.context.TestPropertySource;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
-@TestPropertySource(properties = {
-    "keycloak.auth-server-url=http://localhost:8080/auth",
-    "keycloak.realm=master"
-})
+@Import(JwtDecoderTestConfig.class)
 class JwtDecoderConfigTest {
 
     @Autowired
